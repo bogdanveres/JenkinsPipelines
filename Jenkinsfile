@@ -6,12 +6,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Clean WS')
-        {
-            steps {
-                cleanWs()
-            }
-        }
         
         stage('Hello') {
             steps {
@@ -20,5 +14,26 @@ pipeline {
                 sh 'echo "Added from snippet generator"'
             }
         }
+        
+        stage('Execute shell')
+        {
+            agent {
+                label 'built-in'
+            }
+            
+            steps {
+                sh 'ls' 
+                sh 'chmod +x HelloWorld.sh'
+                sh './HelloWorld.sh'
+            }
+        }
+        
+        stage('Clean WS')
+        {
+            steps {
+                cleanWs()
+            }
+        }
+        
     }
 }
