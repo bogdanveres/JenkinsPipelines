@@ -13,7 +13,7 @@ pipeline {
 
         stage('Hello 2') {
           steps {
-            echo 'Test message'
+            echo 'Test message updated'
           }
         }
 
